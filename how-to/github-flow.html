@@ -6,21 +6,38 @@
     <title>github flow</title>
 
     <!-- jquery -->
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style type="text/css">
+@media (max-width: 640px) {
+  section {
+    background-size: contain;
+  }
+}
+@media (min-width: 640px) {
+  section {
+    background-size: cover;
+  }
+}
+
+.jumbotron img {
+  width: 100%;
+}
+
 section {
-  background-attachment:fixed;
-  background-size: cover;
   background-color: #EEEEEE;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   min-height: fill-available;
-  padding-top: 2em;
-  margin-bottom: 2em;
+  padding-top: 5em;
+  padding-bottom: 20em;
+  margin-bottom: 0.5em;
 }
 section .jumbotron {
   background-color: rgba(255, 255, 255, 0.8);
@@ -85,82 +102,95 @@ section#pull-request {
       </div>
     </header>
 
-    <section id="first">
-      <div class="container">
-        <div class="jumbotron">
-          <h1>github flow</h1>
-          <blockquote>信じられないほど簡単でパワフルなプロセスだ。</blockquote>
-          <cite><a href="https://gist.github.com/Gab-km/3705015">GitHub Flow(Scott Chacon on the Interwebs)</a></cite>
-        </div>
-        <div class="jumbotron">
-          <h2>たった１つの厳格なルール</h2>
-          <blockquote>masterブランチのものは何であれデプロイ可能</blockquote>
-          <cite><a href="https://gist.github.com/Gab-km/3705015">GitHub Flow(Scott Chacon on the Interwebs)</a></cite>
-          masterブランチを常に安定した状態に保っておくことで、プロセスがとてもシンプルになります。
-        </div>
-        <div class="jumbotron">
-          <h2>シンプルなフロー</h2>
-          <a href="https://desktop.github.com">Github desktop</a>の
-          「tutorial」プロジェクトの流れを追いながら説明していきます。
-        </div>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>github flow</h1>
+        <p>
+          <a href="https://gist.github.com/Gab-km/3705015">github flow</a>
+          は、git hub開発チームで行われているシンプルな手順です。<br>
+          とても簡単なルールですが、GitHubが非常に安定した状態を保ちながら
+          毎日175回ものデプロイを行い、発展し続けている基盤となっています。
+        </p>
       </div>
-    </section>
-
-    <section id="branch">
-      <div class="container">
-        <div class="jumbotron">
-          <h2>masterから説明的なブランチを作成する</h2>
+      <div class="jumbotron">
+        <p><q>masterブランチのものは何であれデプロイ可能である</q>（<site><a href="https://gist.github.com/Gab-km/3705015">github flow</a>より</site>）</p>
+        <div>
+          というのが、GitHub flowの<q>たった一つの厳格なルール</q>です。<br>
+          常にリリース可能な、安定したmasterを維持し続けることで、着実に安定してソフトウェアを発展させることができます。<br>
+          そのmasterを起点にして、5つのステップで作業を進めます。
+        </div>
+        <ol>
+          <li>新しい何かに取り組む際は、説明的な名前のブランチをmasterから作成する（例: new-oauth2-scopes）</li>
+          <li>作成したブランチにローカルでコミットし、サーバー上の同じ名前のブランチにも定期的に作業内容をpushする</li>
+          <li>フィードバックや助言が欲しい時、ブランチをマージしてもよいと思ったときは、 プルリクエスト を作成する</li>
+          <li>他の誰かがレビューをして機能にOKを出してくれたら、あなたはコードをmasterへマージすることができる</li>
+          <li>マージをしてmasterへpushしたら、直ちにデプロイをする</li>
+        </ol>
+        <div>
+          最初の3ステップがgitを使ったローカルでの作業、4つめのステップがgithub上での作業となり、5つめは本番環境へのリリースになります。<br>
+          このうちの最初の3ステップを行うための操作方法がgithub desktopのチュートリアルで説明されています。順番に見ていきましょう。
+        </div>
+        <img src="img/first.png">
+      </div>
+      <div class="jumbotron">
+        <h2>masterからブランチを作成する</h2>
+        <div>
           新たな作業に取り掛かる際には、まず左上にあるブランチボタンを押して、
           これから行おうとしている作業が何かを説明するような名前でbranchを作成します。<br>
           masterブランチは常に安定しているので、いつでも安全に作業を開始できます。
         </div>
+        <img src="img/branch.png">
       </div>
-    </section>
-
-    <section id="edit">
-      <div class="container">
-        <div class="jumbotron">
-          <h2>ブランチ上で作業する</h2>
+      <div class="jumbotron">
+        <h2>ブランチ上で作業する</h2>
+        <div>
           Github上の左のペインでプロジェクトを右クリックすると、Finder(Macの場合)やexplorer(windowsの場合)、
           さらには入れていればAtom(テキストエディタ)などで編集するためのメニューが表示されます。<br>
           ここから開いて編集しましょう。
         </div>
+        <img src="img/edit.png">
       </div>
-    </section>
-
-    <section id="commit">
-      <div class="container">
-        <div class="jumbotron">
-          <h2>こまめにコミットする</h2>
+      <div class="jumbotron">
+        <h2>こまめにコミットする</h2>
+        <div>
           変更すると、Github Desctopにも変更内容が表示されます。随時コミットしましょう。<br>
           上部中央の表示切替で「History」モードになっていると変更内容が表示されずコミットできないので、
-          その場合は「X Uncommited Change」と書かれたボタンを押して変更表示モードに切り替えてください。<br>
+          その場合は「n Uncommited Change」と書かれたボタンを押して変更表示モードに切り替えてください。<br>
           コミット時にはSummaryに編集内容の説明を書き、補足があればdescriptionも書きます。
         </div>
-        <div class="jumbotron">
+        <img src="img/commit.png">
+        <div>
           ブランチは、たいていは一人か、同じ作業で密接に協力しているごく少人数にしか影響しません。<br>
           こまめに、右上に表示される「Publish」ボタンや「Sync」ボタンを押して、サーバと同期してください。
         </div>
       </div>
-    </section>
-
-    <section id="pull-request">
-      <div class="container">
-        <div class="jumbotron">
-          <h2>プルリクエストを作る</h2>
+      <div class="jumbotron">
+        <h2>プルリクエストを作る</h2>
+        <div>
           作業がリリースできるレベルまで完成した時や、そうでなくても意見を求めたい時など、
           レビューしてもらう必要があればいつでもpull requestを作成してください。<br>
           ブランチに対して一度プルリクエストを作成すると、その後のブランチに対するコミットは
           全てそのプルリクエストに含まれるようになります。
         </div>
-        <div class="jumbotron">
+        <img src="img/pull-request.png">
+      </div>
+      <div class="jumbotron">
+        <h2>おまけ：レビューとマージ</h2>
+        <div>
+          レビューとマージはgit hub上で行います。<br>
+          Git hub上のプロジェクトのページの右のメニューにある「Pull Requests」というリンクから、
+          pull requestの一覧ページを開けます。<br>
+          その一覧から、各Pull Requestをレビューしたりマージしたりできるページを開くことができます。
+        </div>
+        <div>
+          <img src="img/review-and-merge.png">
           プルリクエストをmasterにマージするのは、テストとレビューが通り、マージが自動で通る場合のみです。<br>
           何か指摘があったりテストが通らない場合はブランチ上でさらに修正を加え、<br>
           マージが自動で通らない時は一旦masterからブランチへのマージを行い、<br>
           masterにマージする前に全ての問題を解決してください。
         </div>
       </div>
-    </section>
+    </div>
     <!-- bootstrap plugin -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
